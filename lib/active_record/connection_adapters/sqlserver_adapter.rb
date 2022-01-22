@@ -181,7 +181,12 @@ module ActiveRecord
       VERSION                     = File.read(File.expand_path("../../../../VERSION",__FILE__)).strip
       ADAPTER_NAME                = 'SQLServer'.freeze
       DATABASE_VERSION_REGEXP     = /Microsoft SQL Server\s+"?(\d{4}|\w+)"?/
-      SUPPORTED_VERSIONS          = [2005,2008,2010,2011,2012,2014,2016,2017]
+
+
+      # HACK: 2022-01-21: Added 2019 just to satisfy the demands of CROS so it will work
+      # against the LiveLink SQL Server now version 2019. CROS doesn't do anything
+      # 2019-specific, so it should be okay as big bandaid. 
+      SUPPORTED_VERSIONS          = [2005,2008,2010,2011,2012,2014,2016,2017,2019]
 
       attr_reader :database_version, :database_year, :spid, :product_level, :product_version, :edition
 
